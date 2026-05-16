@@ -4,6 +4,7 @@ import com.lesan.library.dto.BookRequest;
 import com.lesan.library.dto.BookResponse;
 import com.lesan.library.exception.BookException;
 import com.lesan.library.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookResponse> addBook(@RequestBody BookRequest request) throws BookException {
+    public ResponseEntity<BookResponse> addBook(@Valid @RequestBody BookRequest request) throws BookException {
         BookResponse response = bookService.addBook(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
